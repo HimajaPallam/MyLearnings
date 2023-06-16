@@ -1,0 +1,100 @@
+Kafka Producer:
+-----------------------------
+
+H2 Database connection to Kafka Producer:
+
+Step1:
+
+1. Select the tables from which we need live feeds. Decide on the condition that should trigger the capture of live feeds. For example, you might want to capture changes whenever a specific table is updated or a certain column meets certain criteria.
+
+-- query to trigger the table on updating any of the data
+	CREATE TRIGGER your_trigger_name
+	AFTER UPDATE ON your_table
+	FOR EACH ROW
+	CALL "your_java_class_name.your_trigger_method";
+	
+OR
+
+Configure the H2 database trigger to make an HTTP request:
+Modify your H2 database trigger to make an HTTP request to the API endpoint exposed by your Tomcat project. H2 database triggers can execute SQL statements, so you can use the CALL HTTP('url', 'method', 'headers', 'body') function to make the HTTP request. Here's an example:
+
+	CREATE TRIGGER your_trigger_name
+	AFTER UPDATE ON your_table
+	FOR EACH ROW
+	CALL HTTP('http://localhost:8080/h2trigger', 'POST', 'Content-Type:application/x-www-form-urlencoded', 'key=' || NEW.key_column || '&value=' || NEW.value_column);
+
+OR
+
+-- query to trigger the table on updating two of the columns
+CREATE TRIGGER your_trigger_name
+AFTER UPDATE ON your_table
+FOR EACH ROW
+WHEN (NEW.column1 <> OLD.column1 OR NEW.column2 <> OLD.column2)
+CALL HTTP('http://localhost:8080/h2trigger', 'POST', 'Content-Type:application/x-www-form-urlencoded', 'key=' || NEW.key_column || '&value=' || NEW.value_column);
+
+
+
+
+2. Implement the Trigger Logic in Java:
+Create a Java class that contains the logic for capturing the live feeds.
+Implement the specified trigger method that will be called by the database trigger. This method should receive the necessary information about the updated data.
+Inside the trigger method, you can create a Kafka producer instance to send the updated data to a Kafka topic.
+
+@RestController
+public class H2TriggerController {
+
+    @PostMapping("/h2trigger")
+    public ResponseEntity<String> handleH2Trigger(@RequestParam String key, @RequestParam String value) {
+        // Send data to Kafka
+        Properties props = new Properties();
+        props.put("bootstrap.servers", "localhost:9092");
+        props.put("key.serializer", "org.apache.kafka.common.serialization.StringSerializer");
+        props.put("value.serializer", "org.apache.kafka.common.serialization.StringSerializer");
+
+        try (Producer<String, String> producer = new KafkaProducer<>(props)) {
+            ProducerRecord<String, String> record = new ProducerRecord<>("your_topic", key, value);
+            producer.send(record);
+        }
+
+        return ResponseEntity.ok("Data received and processed successfully");
+    }
+}
+
+3. To enable the H2 database to invoke the Java method when the trigger condition is met, you need to register the Java class in the database.
+Use the H2 CREATE ALIAS statement to create an alias that points to your Java class and the trigger method. Here's an example:
+
+	CREATE ALIAS your_trigger_method FOR "your_java_class_name.your_trigger_method";
+	
+
+
+Kafka Consumer:
+-----------------------------
+
+1. Configure Kafka Consumer Properties:
+In your Spring Boot application, define the necessary Kafka consumer properties in the application configuration file (application.properties or application.yml). 
+
+spring.kafka.bootstrap-servers=localhost:9092
+spring.kafka.consumer.group-id=your_consumer_group_id
+spring.kafka.consumer.key-deserializer=org.apache.kafka.common.serialization.StringDeserializer
+spring.kafka.consumer.value-deserializer=org.apache.kafka.common.serialization.StringDeserializer
+
+
+2. Create a Kafka Consumer Listener:
+Define a Kafka consumer listener class that will handle the incoming Kafka messages. This listener will be responsible for processing the messages received from the Kafka topic. You can annotate this class with @KafkaListener and specify the topic(s) to subscribe to. For example:
+	import org.springframework.kafka.annotation.KafkaListener;
+	import org.springframework.stereotype.Component;
+
+	@Component
+	public class KafkaMessageListener {
+
+		@KafkaListener(topics = "your_topic")
+		public void listen(ConsumerRecord<String, String> record) {
+			String key = record.key();
+			String value = record.value();
+			// Process the key and value as needed
+			System.out.println("Received message: Key=" + key + ", Value=" + value);
+		}
+	}
+
+
+
