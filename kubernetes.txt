@@ -1,0 +1,7 @@
+Pod: The most basic kubernetes object.It consits of group of containers that are running in your cluster.
+----
+
+Volume:
+-------
+It is a directory that contains the data for containers in a pod to access.
+
