@@ -1,7 +1,37 @@
-Pod: The most basic kubernetes object.It consits of group of containers that are running in your cluster.
+Pod: 
 ----
+The most basic kubernetes object.It consits of group of containers that are running in your cluster.
+
 
 Volume:
 -------
 It is a directory that contains the data for containers in a pod to access.
+
+Nodes:
+--------
+Nodes are the machines, either physical or virtual, in your cluster that your applications run on. Nodes perform work dictated by the kubernetes control plane.
+Each node runs kubelet to communicate with the master nodes and regulate itself, kube-proxy to handle networking, and the container runtime.
+
+
+Kubelet:
+---------
+Kubeletis a tiny application that runs on each node in the cluster. It takes a set of specifications, PodSpecs, and ensures containers are working. The kubelet executes actions sent from master node.
+
+Kube-proxy:
+----------- 
+It runs on each worker node in your cluster. It manages network communication going to your pods from inside or outside of your cluster.
+
+Cluster:
+---------
+A cluster is a set of nodes, or worker machines, that containerized applications run on. These nodes can be physical orvirtual machines.
+
+Controller:
+----------
+kubernetes has a group of control loops that monitor the state of your cluster and try to make adjustments to keep the cluster as close as  possible to the desired state. These are called controllers in kubernetes.
+Eg: deployment controller, daemonset controller, the namespace ccontroller, persistant volume controller
+
+Manifest:
+----------
+A manifest in Kubernetes is typically a JSON or YAML file that is used to specify the desired state of a Kubernetes API object. Once a manifest is applied kubernetes will maintain the specifications set of kubernetes object configured. They are used to create , modify, delete objects like pods, deployments, services or ingresses
+
 
