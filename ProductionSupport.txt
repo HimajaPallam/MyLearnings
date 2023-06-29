@@ -1,0 +1,93 @@
+What is production support?
+Production support is the practice of supporting the IT systems/applications. A production support executive receives requests from end-users and analyzes these requests and responds to the end user with a best possible solution. In short, a Production Support Analyst needs to maintain and support the system and applications used by specific sets of users.
+
+What is the incident management?
+Incident management is the activity to identify, analyze, and right issues to avoid the same occurrence in future. It dealt with either an incident response team or an incident management team.
+
+What is Document Control?
+Document control is a function of managing and controlling product documentation.
+
+Do you think teamwork is a critical part of the production support job?
+No, production support person mostly works alone. However, in some cases, product support specialist can be part of a support team. It always helps to be a good team player.
+
+What are the various levels of production support?
+Level 0/ Level 1 support – It is Initial level helpdesk which deals with most common user issues with already scripted solutions. Level 2 Support – It is technical support for the application or software. They check the flow of the application and can go deep into the issue and fix it if they can if not escalate further. This kind of production support executive should have vast experience on a particular technology platform. Level 3 Support: This kind of product support professionals work on enhancements, and bug fixes. They most like to have expertise on one or two technology platforms like Oracle database or a Windows Admin.
+
+Application Outage: A period when a service or an application is not available or when equipment is not operational.
+
+What Should You Do If You Receive An Application Outage Ticket?
+Finish the RCA (Root Cause Analysis) and distribute the report to stakeholders.
+If necessary, bounce the web/application server instance.
+Involve the relevant Network Team if not.
+Check to check if the server is responding.
+Close the ticket with the measures you took to remedy the issue.
+Inform the stakeholders about the development.
+Examine the Application and Web Server logs to see whether the application is getting requests.
+Inform the stakeholders that the problem is being addressed.
+
+
+What problems will production support professionals face?
+Application crashes are one of the most prevalent problems that technical support engineers face. The most common cause of program crashes is unhandled exceptions. Furthermore, dissatisfied clients frequently use harsh language to vent their emotions, and in such cases, the application support engineer should stay cool and demonstrate empathy for the consumer. One of the most critical traits of a production support engineer is patience.
+
+
+Have you ever had an issue as an outcome of caching?
+Yes, I occasionally hear complaints about outdated pages being displayed to users. In those circumstances, I clean the cache and then try to figure out why. Sometimes the problem is caused by a somewhat long refresh period. In such circumstances, I decrease the cache refresh interval.
+
+
+What would you do if the problem was with the database server?
+I involve DBA and attempt to fix the problem via them. I keep the stakeholders informed of the progress as they work to solve it.
+
+
+How do you repair or restore a crashed application?
+Application crashes are among the most typical instances that production support engineers experience. Unhandled exceptions and various looping structures in the program typically cause an application crash. There are several approaches that may be taken to handle this problem, and the following are some of the more prevalent.
+Examine for an Unhandled exception. In the case of unhandled exceptions, the production support engineer should provide the error code and explanation.
+To determine what is occurring at the application end, run a full stack trace for unhandled exceptions.
+After getting permission, restart the Unix server and test the application.
+
+
+What is the command for displaying the current working directory?
+PWD is an abbreviation for print working directory. In the Linux operating system, the PWD command is used to print the current working directory.
+
+Syntax:
+
+$ pwd [-options]
+
+
+
+Can we remove many files at the same time under Unix? If so, how so?
+Yes, we can remove many files at the same time on Unix. The rm command (short for remove) is used to delete or remove files, directories, or symbolic links from file systems on Unix and Unix-like systems. rm, like other commands, has options that control how it behaves. Some of the alternatives are as follows:
+
+rm -i: It asks for confirmation before deleting a file.
+rm -f: This command ignores non-existent files and ignores any confirmation prompts.
+rm -r: It recursively removes or deletes folders and their contents.
+Syntax:
+$ rm filename1 filename2 filename3
+
+
+
+Can you explain the terms (.) in Unix? 
+Current directory (.): The current directory in Unix is denoted by (.). You can stay where you are by using the command "cd." (with a space between cd and dot).
+
+Can you explain the terms (..) in Unix?
+Parent directory (..): In Unix, (..) represents the current directory's parent. You can return to a single directory by using the command "cd.." or "cd.." (with a space). Moving to the parent directory is another term for this.
+
+What is the difference between a Web Server and an Application Server? (answer)
+The main difference between Web and Application Server comes from the fact that you cannot run EJB on the Web server like Tomcat or Jetty. The application server like WebLogic and WebSphere provides the runtime environment for EJB and other advanced services required by Java EE or J2EE specification.
+
+Application Server is a term that sometimes is mixed with a web server. While a web server handles mainly HTTP protocols, the application server deals with several different protocols, including, but not limited, to HTTP.
+
+The Web server's main job is to display the site content and the application server is in charge of the logic, the interaction between the user and the displayed content. The application server is working in conjunction with the web server, where one displays and the other one interacts
+
+
+
+
+What is the difference between Stack memory and heap? Which one is faster? (answer)
+These are just two different memory areas used to store different kinds of variables. The stack is local to every thread while heap memory is shared among all threads. Since Stack is closer to thread and usually implemented using CPU registers they are faster than heap memory. 
+
+The stack is used to store local variables as well as method call frames while the heap is used to store objects and class metadata.
+
+
+What is the difference between TCP/IP and UDP protocol? (answer)
+There are several differences between TCP and UDP protocol but the most important of them is that TCP provides a guarantee of message delivery while UDP doesn't give any guarantee. Because of this guarantee TCP sends more messages than UDP and hence consumes more bandwidth and is slower than UDP. TCP is also a connection-oriented protocol while UDP is connectionless. 
+
+
