@@ -76,8 +76,9 @@ The main difference between Web and Application Server comes from the fact that 
 
 Application Server is a term that sometimes is mixed with a web server. While a web server handles mainly HTTP protocols, the application server deals with several different protocols, including, but not limited, to HTTP.
 
-The Web server's main job is to display the site content and the application server is in charge of the logic, the interaction between the user and the displayed content. The application server is working in conjunction with the web server, where one displays and the other one interacts
+The Web server's main job is to display the site content and the application server is in charge of the logic, the interaction between the user and the displayed content. The application server is working in conjunction with the web server, where one displays and the other one interacts.
 
+Web servers handle HTTP requests and responses only. An application server exposes business logic to the clients, which generates dynamic content. It is a software framework that transforms data to provide the specialized functionality offered by a business, service, or application.
 
 
 
@@ -89,5 +90,24 @@ The stack is used to store local variables as well as method call frames while t
 
 What is the difference between TCP/IP and UDP protocol? (answer)
 There are several differences between TCP and UDP protocol but the most important of them is that TCP provides a guarantee of message delivery while UDP doesn't give any guarantee. Because of this guarantee TCP sends more messages than UDP and hence consumes more bandwidth and is slower than UDP. TCP is also a connection-oriented protocol while UDP is connectionless. 
+
+What is deadlock? How do you find if your Java program has a deadlock? (answer)
+A deadlock is a condition that can occur between two or multiple threads. In this case, each of the threads waits for each other and cannot progress. In Java, this usually happens when thread 1 holds the lock required by thread 2 and thread 2 holds the lock required by thread 1. 
+
+If your Java program is hung then it could be a deadlock. You can take a thread dump and find out if any thread is waiting for the lock held by others and vice-versa. You can also use jConsole tool to find deadlock.
+
+What is the race condition? (answer)
+The race condition is another multithreading and concurrency bug which happens due to racing between two threads, for example, if one thread is updating a variable and the second thread tries to read the value before it is finished. You can avoid race conditions by properly synchronizing your code.
+
+
+How do you check how much memory and CPU your Java process is consuming?
+First, you need to find the PID of your process, which you can find by using the "ps" command as shown in the previous question. Once you find the PID you can use the "top" command to find the CPU and memory usage. 
+
+How do you start and stop Tomcat in Linux?
+When you install Tomcat in Linux by unzipping the downloaded package, you can see that there is a startup.sh and shutdown.sh file in the tomcat/bin directory. These scripts are used to start and stop Tomcat in Linux. These scripts internally call Catalina.sh, the main script to start the Tomcat engine.
+
+How do you check your Java process is running on Linux? (example)
+You can check by using the "ps" command and "grep" command like ps -ef | grep "myprocess". The keyword which you use with grep for search can be anything unique to your process, something which appears in its command line e.g. name of the class which implements the main method. You can also do "ps -ef | grep java" to list all Java processes.
+
 
 

@@ -1,0 +1,56 @@
+The format of storage in MongoDB(NoSQL) is in BSON.
+
+
+MongoDB work in two layers –
+
+Application Layer and
+Data layer
+
+Application Layer is also known as the Final Abstraction Layer, it has two-parts, first is a Frontend (User Interface) and the second is Backend (server). The frontend is the place where the user uses MongoDB with the help of a Web or Mobile. This web and mobile include web pages, mobile applications, android default applications, IOS applications, etc. The backend contains a server which is used to perform server-side logic and also contain drivers or mongo shell to interact with MongoDB server with the help of queries.
+
+These queries are sent to the MongoDB server present in the Data Layer. Now, the MongoDB server receives the queries and passes the received queries to the storage engine. MongoDB server itself does not directly read or write the data to the files or disk or memory. After passing the received queries to the storage engine, the storage engine is responsible to read or write the data in the files or memory basically it manages the data.
+
+
+Relational Database Management System(RDBMS) is not the correct choice when it comes to handling big data by the virtue of their design since they are not horizontally scalable. If the database runs on a single server, then it will reach a scaling limit. NoSQL databases are more scalable and provide superior performance. MongoDB is such a NoSQL database that scales by adding more and more servers and increases productivity with its flexible document model.
+
+
+
+Features:
+-----------
+Indexing: Without indexing, a database would have to scan every document of a collection to select those that match the query which would be inefficient. So, for efficient searching Indexing is a must and MongoDB uses it to process huge volumes of data in very less time.
+
+Scalability: MongoDB scales horizontally using sharding (partitioning data across various servers). Data is partitioned into data chunks using the shard key, and these data chunks are evenly distributed across shards that reside across many physical servers. Also, new machines can be added to a running database.
+
+Replication and High Availability: MongoDB increases the data availability with multiple copies of data on different servers. By providing redundancy, it protects the database from hardware failures. If one server goes down, the data can be retrieved easily from other active servers which also had the data stored on them.
+
+
+A MongoDB Database can be called as the container for all the collections. 
+
+Collection is a bunch of MongoDB documents. It is similar to tables in RDBMS.
+Document is made of fields. It is similar to a tuple in RDBMS, but it has dynamic schema here. Documents of the same collection need not have the same set of fields
+
+
+
+
+mongo: The Command Line Interface to interact with the db.
+mongod: This is the database. Sets up the server.
+mongodump: It dumps out the Binary of the Database(BSON)
+mongoexport: Exports the document to Json, CSV format
+mongoimport: To import some data into the DB.
+mongorestore: to restore anything that you’ve exported.
+mongostat: Statistics of databases
+
+
+You can use methods like count(), find(), findOne() to do some very basic queries with your document. 
+db.employee.count()
+db.employee.findOne()
+
+Indexing:
+---------
+ You can also use indexing if your query returns more than one document. For example, db.employee_data.find() returns all the documents in the collection but if you just want the 7th one then, just do db.employee_data.find()[6] and it will return the specific document. [Note : Indexing starts from 0 here]. 
+ 
+Projections: Let’s say for a query you want only some specific details and not the whole set of detail in the document. You can use projections for this. After your query object just make the needed fields as 1 and others would be assumed as 0 automatically. But remember that the “_id” field is always assumed to be 1 implicitly and if you don’t want to see the ugly looking “_id” field, then you need to say this in your projection by “_id : 0” 
+
+Show the age, gender and email, but not “_id” of the employee named “Harshit Gupta”. (Assume that there is only one employee named Harshit Gupta). Usage of Projections 
+
+> db.employee_data.find( { name: “Harshit Gupta” }, { _id:0, age:1, gender:1, email:1 } )
