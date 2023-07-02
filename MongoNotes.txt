@@ -54,3 +54,151 @@ Projections: Let’s say for a query you want only some specific details and not
 Show the age, gender and email, but not “_id” of the employee named “Harshit Gupta”. (Assume that there is only one employee named Harshit Gupta). Usage of Projections 
 
 > db.employee_data.find( { name: “Harshit Gupta” }, { _id:0, age:1, gender:1, email:1 } )
+
+MongoDB:  It centers around the CAP theorem (Consistency, Availability, and Partition tolerance).	
+RDBMS:  It centers around ACID properties (Atomicity, Consistency, Isolation, and Durability).
+
+CAP:
+The three letters in CAP refer to three desirable properties of distributed systems with replicated data: consistency (among replicated copies), availability (of the system for read and write operations) and partition tolerance (in the face of the nodes in the system being partitioned by a network fault). 
+
+
+Disadvantages of MongoDB : 
+------------------------------ 
+It uses high memory for data storage.
+You are not allowed to store more than 16MB data in the documents.
+The nesting of data in BSON is also limited you are not allowed to nest data more than 100 levels.
+
+
+Basic Queries:
+-------------
+show dbs     -  to get available databases
+default databases are -> admin, config, and local.
+For creatign DB		-  use database_name 
+
+For Creating Collection		-  db.collection_name.insertOne({..})
+
+
+
+In MongoDB, when the find() method is used to find the documents present in the given collection, then this method returned a pointer which will points to the documents of the collection, now this pointer is known as cursor. 
+
+In MongoDB, the find() method return the cursor, now to access the document we need to iterate the cursor. In the mongo shell, if the cursor is not assigned to a var keyword then the mongo shell automatically iterates the cursor up to 20 documents. MongoDB also allows you to iterate cursor manually. So, to iterate a cursor manually simply assign the cursor return by the find() method to the var keyword Or JavaScript variable. 
+
+Note: If a cursor inactive for 10 min then MongoDB server will automatically close that cursor.
+
+Syntax:
+
+var name = db.collection_name.find()
+
+name
+
+We can use loops in queries:
+----------------------------------
+
+var mycursor = db.student.find({studentId:{$gt:1}});
+> while(mycursor.hasNext()){
+... print(tojson(mycursor.next()));
+... }
+.............................................................
+db.collection.find().forEach(<function>)
+
+var mycursor = db.student.find({studentId:3}).pretty()
+mycursor.forEach(printjson)
+..............................................................
+cursor.toArray()
+
+var mycursor = db.student.find().pretty()
+var docs = mycursor.toArray()
+var resultdoc = docs[0]
+resultdoc
+
+pretty() method is used to configure the cursor to display results in an easy-to-read format.
+-..........................................................................................-
+
+db.student.find().next()
+Here, the next() method return the first document from the collection.
+
+
+
+Read	-> find()
+write:
+------
+insertone()
+insertMany()
+
+updateone()
+updateMany()
+replaceone()
+
+deleteone()
+deleteMany()
+
+
+Bulk Inserts:
+--------------
+var bulk = db.students.initializeUnorderedBulkOp();
+bulk.insert( { first_name: "Sachin", last_name: "Tendulkar" } );
+bulk.insert( { first_name: "Virender", last_name: "Sehwag" } );
+bulk.insert( { first_name: "Shikhar", last_name: "Dhawan" } );
+bulk.insert( { first_name: "Mohammed", last_name: "Shami" } );
+bulk.insert( { first_name: "Shreyas", last_name: "Iyer" } );
+bulk.execute();
+
+Supports Array operators:
+isArray()
+size()
+arrayElemAt
+concatArrays
+reverseArrays
+
+String operators:
+concat()
+strcasecmp()
+toupper
+tolower
+
+
+db.Collection_name.sort({“field_name.embed_field_name” : 1 or -1})
+1- ascending order
+-1 for descending order
+
+
+db.Collection_name.sort({“field_name.embed_field_name” : 1 or -1}) - for existence of field
+
+Capped Collections:
+-----------------------
+Capped collections are fixed-size collections means when we create the collection, we must fix the maximum size of the collection(in bytes) and the maximum number of documents that it can store. After creation, if we try to add more than documents to their capacity, it overwrites the existing documents. It supports high-throughput operations, that are useful when we insert and retrieve documents based on insertion order. 
+
+
+db.createCollection("student", {capped:true, size:10000, max:4})
+In the above example, we are working with the “gfg” database in which we are creating a new capped collection of name “student” with maximum document capacity “4” using createCollection() method.
+
+
+Find the sum of ranks grouped by ages:
+--------------------------------------
+var map=function(){ emit(this.age,this.rank)};
+var reduce=function(age,rank){ return Array.sum(rank);};
+db.employee.mapReduce(map,reduce,{out :"resultCollection1"});
+db.resultCollection1.find()
+
+
+Upsert with findAndModify() method:
+------------------------------------
+We can use upsert option with findAndModify() method. In this method, the default value of this option is false. If we set the value of this option is true, then the method performs one of the following operation:
+
+If a document or documents found that matches the given query criteria, then the findAndModify() method updates the document/documents.
+If no document/documents match the given query criteria, then the findAndModify() method inserts a new document in the collection.
+
+db.employee.findAndModify({query:{name:"Ram"}, 
+                            update:{$set:{department:"Development"}},
+                            upsert:true})
+							
+							
+Indexing in MongoDB : 
+-----------------------
+MongoDB uses indexing in order to make the query processing more efficient. If there is no indexing, then the MongoDB must scan every document in the collection and retrieve only those documents that match the query. Indexes are special data structures that stores some information related to the documents such that it becomes easy for MongoDB to find the right data file. The indexes are order by the value of the field specified in the index. 
+
+Creating an Index : 
+MongoDB provides a method called createIndex() that allows user to create an index. 
+db.COLLECTION_NAME.createIndex({KEY:1}) 
+
+The beauty of a database lies in indexing i.e. fetching the data in a short span of time without iterating over the whole dataset. MongoDB is a NoSQL document type database that follows indexing. Indexes make searching in a collection is easier with the limited number of documents. A binary tree is the data structure used by an index. In documents, the _id field is a default index which is automatically created by MongoDB and we are not allowed to drop this index. If we try to drop this index using the dropIndexe() method it will give us an error. And the value of this field uniquely identifies a document from others. 
