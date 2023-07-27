@@ -1,0 +1,29 @@
+Agile project management is a process for managing a project that involves constant collaboration and working in iterations. 
+
+
+Rapid progress: By effectively reducing the time it takes to complete various stages of a project, teams can elicit feedback in real time and produce working prototypes or demos throughout the process
+Customer and stakeholder alignment: Through focusing on customer concerns and stakeholder feedback, the Agile team is well positioned to produce results that satisfy the right people
+Continuous improvement: As an iterative approach, Agile project management allows teams to chip away at tasks until they reach the best end result
+
+Agile frameworks:
+Scrum: It is ideal for projects with rapidly changing requirements, using short sprints. Principle-based project management
+Kanban: It visualizes project progress and is great for tasks requiring steady output.; Visual workflows and processes
+Scrumban: Hybrid of Scrum and Kanban
+Lean: It streamlines processes, eliminating waste for customer value.
+
+Every Agile framework emphasizes a degree of adaptability, breaking projects into phases and embracing changing requirements.
+Through iterations and incremental efforts, they incorporate collaboration and customer feedback, leading to continuous improvement.
+
+
+What are some of the responsibilities of an Agile team?
+
+Self-organization: One of the cornerstones of an Agile team is the ability to self-organize. In Agile project management, the onus is on individual team members and teams to take initiative and organize themselves in a way that will lead to the highest output.
+Cross-functional collaboration: Going hand in hand with the need for self-organization is the Agile demand for cross-functional collaboration. Agile teams have to relay information across departments and be able to work closely with a range of colleagues.
+Iteration planning: Specific to Agile project management, iteration planning requires team members to outline the scope of individual sprints according to the product backlog.
+
+
+There are various ways to effectively track progress and measure success with Agile projects:
+
+Daily standups: Brief meetings to discuss obstacles and find solutions
+Sprint reviews: Informal sit-down meetings to present work and solicit team feedback
+Retrospectives: Reflections on past work to inspire and influence future progress

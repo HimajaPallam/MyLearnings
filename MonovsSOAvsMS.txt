@@ -1,0 +1,50 @@
+
+Monolithic:
+---------------
+
+	UI
+	|
+	v
+
+BusinessLogic
+	|
+	v
+	
+App Server- one component
+	|
+	v
+	DB
+	
+	
+
+SOA:
+----------
+	UI
+	|
+	v
+
+	ESB
+	|
+	v
+	
+Different Services(reusable)
+	|
+	v
+	DB
+	
+	
+MS:
+-----
+	UI
+
+|	|	|	|
+v	v	v	v
+MS	MS	MS	MS
+|	|	|	|
+v	v	v	v
+DB	DB	DB	DB
+
+
+
+	
+

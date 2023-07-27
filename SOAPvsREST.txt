@@ -1,0 +1,54 @@
+SOAP (Simple Object Access Protocol) is a standards-based web services access protocol-
+is a highly strict and secure way to build APIs that encodes data in XML.
+SOAP is a more rigid set of messaging patterns than REST. The rules in SOAP are important because we can’t achieve any level of standardization without them.
+SOAP relies exclusively on XML to provide messaging services.
+Requires a standardized structure includes headers and a message body.
+here are some standards SOAP uses:
+
+Web Services Security (WS-Security) specifies security measures like using unique identifiers called tokens
+Web Services Addressing (WS-Addressing) requires including routing information as metadata
+WS-ReliableMessaging standardizes error handling in SOAP messaging
+Web Services Description Language (WSDL) describes the scope and function of SOAP web services
+
+When you send a request to a SOAP API, you must wrap your HTTP request in a SOAP envelope. This is a data structure that modifies the underlying HTTP content with SOAP request requirements. Due to the envelope, you can also send requests to SOAP web services with other transport protocols, like TCP or Internet Control Message Protocol (ICMP)
+
+Design:
+-------
+The SOAP API exposes functions or operations, while REST APIs are data-driven. For example, consider an application with employee data that other applications can manipulate. The application's SOAP API could expose a function called CreateEmployee. To create an employee, you would specify the function name in your SOAP message when sending a request.
+
+Flexibility:
+-----------
+SOAP APIs are rigid and only allow XML messaging between applications. The application server also has to maintain the state of each client. This means it has to remember all previous requests when processing a new request.
+
+Performance:
+------------
+SOAP messages are larger and more complex, which makes them slower to transmit and process. This can increase page load times.
+
+Scalability:
+--------------
+The SOAP protocol requires applications to store the state between requests, which increases bandwidth and memory requirements. As a result, it makes applications expensive and challenging to scale.
+
+SOAP supports encryption with additional overheads.
+
+
+REST as an architecture style does not require processing and is naturally more flexible.
+doesnt require strict structure includes http method, endpoint, headers and body
+Stateless. The API completes every new request independently of previous requests.
+Cacheable. All API responses are cacheable.
+
+Design:
+-------
+However, the application's REST API could expose a URL called /employees, and a POST request to that URL would create a new employee record.
+Flexibility:
+-------------
+REST is more flexible and allows applications to transfer data as plain text, HTML, XML, and JSON. REST is also stateless, so the REST API treats every new request independently of previous requests.
+
+Performance:
+-----------
+REST is faster and more efficient than SOAP due to the smaller message sizes of REST. REST responses are also cacheable, so the server can store frequently accessed data in a cache for even shorter page load times.
+
+Scalability:
+--------------
+Unlike SOAP, REST permits stateless and layered architecture, which makes it more scalable. For example, the application server can pass the request to other servers or allow an intermediary (like a content delivery network) to handle it.
+
+REST supports encryption without affecting performance.

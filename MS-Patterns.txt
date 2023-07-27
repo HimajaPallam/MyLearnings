@@ -1,0 +1,14 @@
+SAGA pattern is a design pattern that is a long-lived sequence of smaller transactions. This pattern is used to manage and maintain data consistency across multiple microservices. Each transaction is executed by a single service, and the state changes are broadcasted to other services involved in the Saga.
+
+There are different approaches to the implementation of SAGA design patterns but, mostly two are used, which has been explained by the Spring Boot developers.
+
+Event-based Approach Orchestration-based Approach
+
+
+Circuit Breaker Pattern
+As the name suggest, the Circuit Breaker pattern prevents cascading failure by breaking circuit and enables applications to continue functioning when one or more services fail. It is used to handle faults that may occur in a microservice architecture.
+
+Service Registry Pattern in Microservices
+The Service Registry Pattern provides a central repository to discover Microservices by name. It is a microservice architecture pattern that enables services to discover other Microservices and communicate with each other.
+
+In this pattern, a central service registry or directory is used to keep a record of the available services and their locations. Microservices can register themselves with the registry, and other Microservices can look up the registry to find the location of the required services.
