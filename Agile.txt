@@ -1,3 +1,38 @@
+Agile:
+Iterative Development: Agile development follows an iterative approach, where small increments of functionality are developed in short timeframes called iterations or sprints. Each iteration typically lasts two to four weeks, allowing for continuous feedback and frequent releases.
+
+User Stories: Agile teams use user stories to capture requirements from the perspective of end-users. User stories are concise, non-technical descriptions of a feature or functionality that provide a clear understanding of what needs to be developed.
+
+Cross-Functional Teams: Agile teams are typically cross-functional, composed of developers, testers, designers, and other necessary roles. This structure enables better collaboration and collective ownership of the product.
+
+Backlog and Prioritization: The development work is managed through a backlog, a prioritized list of user stories and tasks. The team collaborates with stakeholders to prioritize items based on business value, complexity, and customer needs.
+
+Scrum or Kanban Frameworks: Agile development is often implemented using Scrum or Kanban frameworks. Scrum divides work into fixed-length sprints, while Kanban provides a more continuous flow of work.
+
+Retrospectives: Agile teams regularly conduct retrospectives at the end of each sprint to reflect on the process and identify areas for improvement. These feedback loops help the team continuously improve their development practices.
+
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Sprint Planning Meeting:
+The Sprint Planning Meeting marks the beginning of the sprint. The Product Owner collaborates with the Development Team to determine which Product Backlog items will be worked on during the sprint. The team selects a set of user stories or tasks from the Product Backlog and commits to achieving the Sprint Goal. The Sprint Planning Meeting typically has two parts: the first part is focused on what will be done in the sprint (what user stories to work on), and the second part is focused on how the work will be done (defining the tasks).
+
+Daily Scrum (Daily Stand-up):
+The Daily Scrum is a short and time-boxed meeting that occurs every day during the sprint.
+The Development Team gathers to synchronize and discuss progress and plan for the day. Each team member answers three questions:
+
+What did I do yesterday?
+What will I do today?
+Are there any impediments blocking my progress?
+
+Sprint Review (Sprint Demo):
+The Sprint Review takes place at the end of the sprint and is an opportunity for the Development Team to present the completed work to the stakeholders, including the Product Owner and any other interested parties.
+
+Sprint Retrospective:
+The Sprint Retrospective is also held at the end of the sprint. The Scrum Team reflects on the past sprint, identifies what went well and what could be improved, and discusses action items for continuous improvement
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
 Agile project management is a process for managing a project that involves constant collaboration and working in iterations. 
 
 
@@ -27,3 +62,6 @@ There are various ways to effectively track progress and measure success with Ag
 Daily standups: Brief meetings to discuss obstacles and find solutions
 Sprint reviews: Informal sit-down meetings to present work and solicit team feedback
 Retrospectives: Reflections on past work to inspire and influence future progress
+
+
+Scrum or Kanban Frameworks: The Agile process can be implemented using Scrum or Kanban frameworks. Scrum is well-suited for teams that prefer fixed-length iterations and strict roles, while Kanban offers a more continuous flow of work and is adaptable to changing priorities.

@@ -1,0 +1,39 @@
+REST enables client applications to exchange data with a server using HTTP verbs, which is the standard communication protocol of the internet. On the other hand, GraphQL is an API query language that defines specifications of how a client application should request data from a remote server. 
+
+The REST API requires client requests to follow a fixed structure to receive a resource. This rigid structure is easy to use, but it’s not always the most efficient means to exchange exactly the data needed.
+
+Here’s what a REST request uses to work: 
+
+HTTP verbs that determine the action
+A URL that identifies the resource on which to action the HTTP verb
+Parameters and values to parse, if you want to create or modify an object within an existing server-side resource
+For example, you use GET to get read-only data from a resource, POST to add a new resource entry, or PUT to update a resource.
+
+In contrast, here’s what GraphQL requests use:
+
+Query for getting read-only data
+Mutation for modifying data
+Subscription to receive event-based or streaming data updates
+A data format describes how you would like the server to return the data, including objects and fields that match the server-side schema. You can also input new data. Internally, GraphQL sends every client request as a POST HTTP request.
+
+
+
+
+Path (Param)Variable:
+-------------
+@RequestMapping(value="/book/{isbn}", method= RequestMethod.GET)
+public String showBookDetails(@PathVariable("ISBN") String id,
+                              Model model){
+   model.addAttribute("ISBN", id);
+   return "bookDetails";
+}
+
+Request Param:
+----------------
+@RequestMapping("/trades")
+public String showTradeDetails(@RequestParam String tradeId,
+                               Model model){
+  model.addAttribute("tradeId", tradeId);
+  return "tradeDetails";
+}
+

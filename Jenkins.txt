@@ -1,0 +1,107 @@
+Jenkins:
+VCS - Bitbucket
+Install Jenkins and necessary plugins ( Jenkins Plugin Manager.)
+configure jenkins job - create a job and set up a trigget on code commits to specific branches
+Build Step - set up a build step- provide build tasks as -. clean install or package to compile and generate executable jar or war
+Testinn step - Incorporate a testing phase in the Jenkins job to execute unit tests, integration tests, and any other relevant tests using Maven or Gradle commands.
+Artifact Management:  After a successful build and test execution, archive the generated artifact (e.g., JAR or WAR file) as a build artifact. You can use this artifact for deployment in later stages.
+Code Quality and Analysis:You can integrate static code analysis tools (e.g., SonarQube) in your Jenkins job to check the code's quality and adherence to coding standards.
+
+		SonarQube is a popular code quality management tool that provides a wide range of static code analysis checks to assess the quality and security of your codebase. Here are some sample code quality checks that can be performed using SonarQube:
+
+		Code Smells: SonarQube identifies various code smells, which are indicators of design and implementation issues that may lead to maintainability problems. Examples include long methods, complex code structures, and duplicated code.
+
+		Bugs: SonarQube can detect potential bugs in your code, such as null pointer dereferences, resource leaks, and incorrect exception handling.
+
+		Code Duplication: SonarQube scans the codebase to find duplicated code fragments, helping to eliminate redundancy and improve maintainability.
+
+		Security Vulnerabilities: SonarQube checks for security vulnerabilities in the code, such as SQL injection, cross-site scripting (XSS), and other common security issues.
+
+		Code Coverage: SonarQube can analyze code coverage metrics to determine how much of your code is covered by automated tests, helping you identify areas that require additional testing.
+
+		Unit Test Quality: SonarQube can assess the quality of your unit tests and provide feedback on their effectiveness and coverage.
+
+		Complexity and Maintainability: SonarQube calculates complexity metrics and provides insights into the maintainability of your codebase.
+
+		Documentation and Comments: SonarQube can assess the presence and quality of code comments and documentation.
+		
+
+		pipeline {
+			agent any
+
+			stages {
+				stage('Build') {
+					// Perform your build tasks here
+				}
+
+				stage('SonarQube Analysis') {
+					steps {
+						script {
+							def scannerHome = tool 'SonarQubeScanner'
+							withSonarQubeEnv('SonarQube') {
+								sh "${scannerHome}/bin/sonar-scanner -Dsonar.projectKey=my_project_key -Dsonar.sources=src"
+							}
+						}
+					}
+				}
+
+				stage('Deploy') {
+					// Perform your deployment tasks here
+				}
+			}
+		}
+		
+		In the above example, the withSonarQubeEnv step is used to set up the SonarQube environment with the configuration named "SonarQube" (this name should match the SonarQube configuration defined in Jenkins). The sonar-scanner command is then executed within this environment to run the code analysis.
+
+		It's important to note that before using the withSonarQubeEnv step, you should ensure that you have correctly configured the SonarQube server and scanner on your Jenkins server. Additionally, the SonarQube properties like sonar.projectKey, sonar.sources, and others can be configured in your sonar-project.properties file or directly passed as arguments to the sonar-scanner command.
+
+		By using the withSonarQubeEnv step, you can seamlessly integrate SonarQube code analysis into your Jenkins Pipeline and get valuable feedback on code quality, security, and maintainability as part of your CI/CD process.
+
+
+		
+Deployment (Optional):
+
+Optionally, you can configure a deployment step in the Jenkins job to automatically deploy the Microservice to a testing or staging environment for further validation.
+Notifications:
+
+Set up email notifications or other notification mechanisms to inform the development team about the build status (success or failure).
+Scheduled Builds (Optional):
+
+You can schedule periodic builds to ensure that the codebase is always up-to-date and that potential issues are caught regularly.
+Monitoring and Logging (Optional):
+
+Consider integrating monitoring and logging tools to track the CI process's performance and identify any bottlenecks.
+
+
+
+Kubernetes Helm Charts similar to Jenkins - and can be installed on our Kubernetes clusters
+Jenkins can be installed on any machine with a Java Runtime Environment installed
+
+
+The pipeline is a special type of Jenkins job - simply a sequence of steps controlled by a defined logic - which Orchestrates long-running activities that can span across multiple build agents.
+Pipeline->
+Start-Build-Run Tests-Deploy-End
+
+
+
+How do you store credentials in Jenkins securely?
+In a Jenkins pipeline, you can access the stored credentials using the withCredentials block. The withCredentials block makes the credentials available as environment variables within the block, and they will be automatically masked in the Jenkins logs.
+pipeline {
+    agent any
+
+    environment {
+        MY_USERNAME = credentials('YourGlobalCredentialID')
+    }
+
+    stages {
+        stage('Example Stage') {
+            steps {
+                withCredentials([usernamePassword(credentialsId: 'YourGlobalCredentialID', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
+                    // Access the username and password using environment variables
+                    echo "Username: $USERNAME"
+                    echo "Password: $PASSWORD"
+                }
+            }
+        }
+    }
+}
