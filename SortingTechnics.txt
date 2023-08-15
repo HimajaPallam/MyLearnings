@@ -1,0 +1,49 @@
+Bubble Sort:
+--------------
+
+for(i=0;i<n-1;i++)
+and
+for(j=0;j<n-i-1;j++){
+swap logic
+}
+
+largest will be sorted to last position in all the iterations
+
+
+Insertion Sort:
+---------------
+for(i=1;i<n;i++){ ------ start from first elem instead of zeroth position
+key = arr[i];
+j = i-1;
+
+while(j>=0;arr[j]>key){
+arr[j+1] = arr[j]
+j=j-1
+}
+
+arr[j+1] = key;
+}
+
+
+Quick Sort:
+-------------
+select pivot and sort according to iterations
+select pivot as last elem
+and sort to left and right and place this pivot at middle
+
+Merge Sort:
+-----------
+Divide everything until we have seperate elems then sort - nlogn
+
+Selection Sort:
+---------------
+loop from i=0
+for(int i=0;i<n;i++)
+minindex = i;
+loop to find min postion
+for(j=i+1;j<n;j++){
+if(arr[j] <arr[minindex]
+assign inindex = x
+}
+swap i with minindex elements
+swap arr[i] and arr[minindex]

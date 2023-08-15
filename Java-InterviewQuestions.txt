@@ -1,0 +1,60 @@
+Java:
+---------------------
+Inheritance
+Interfaces
+Abstraction
+Polymorphism
+Encapsulation
+Diamond problem
+Method Overloading and Overriding
+What are constructors?
+Constrcutors can be private and static?? 
+JVM Memory management
+Heap vs Stack
+PermGen and Meta Space
+Reflections
+Transient and Volatile Variables
+Synchronized block
+Parent class of all objects
+final vs finally vs finalize
+Rest vs Soap
+Monolith vs SOA vs Microservice
+Design Patterns
+Java8 Features especially Streams but read everything
+
+
+Collections:
+---------------------
+Arrays vs Arraylist vs Linkedlist vs Vector vs Set
+Hashmap and Hashset internal implementation
+Failfast iterators
+Concurrent modification exception
+concurrent hashmap working
+
+
+Spring:
+-----------
+Dependency Injection
+Aspects
+Spring vs spring boot
+Bean life cycle and scopes
+XmlbeanFactory vs ApplicationContext
+@Controller vs @RestController
+@Controller vs @Service vs @Repository
+Excpetion Handling in Spring
+spring dev tools
+spring profiles
+Actuator
+can the default port of the server be changed?
+
+
+Hibernates:
+----------------
+transient vs persistant vs detached state of objects
+JPA vs Hibernates
+Second level Cache
+ 
+
+
+
+
